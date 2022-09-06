@@ -38,7 +38,7 @@ const slideShow = (
     circle.addEventListener("click", (e) => {
       const index = arrayOfCircles.indexOf(e.target)
       counter = index
-      console.log(counter)
+      // console.log(counter)
       mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
       shadeCircle(arrayOfCircles[counter], arrayOfCircles)
     })
@@ -51,38 +51,38 @@ const slideShow = (
     } else {
       counter--
     }
-    console.log("prevbox "+counter)
+    console.log("prevbox " + counter)
     mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
     shadeCircle(arrayOfCircles[counter], arrayOfCircles)
   })
 
   // Change counter, bg, shaded circle when the next button is clicked
   nextBox.addEventListener("click", () => {
-    if (counter == arrayOfImageUrl.length-1) {
+    if (counter == arrayOfImageUrl.length - 1) {
       counter = 0
     } else {
       counter++
     }
-    console.log("prevbox "+counter)
+    // console.log("prevbox " + counter)
     mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
     shadeCircle(arrayOfCircles[counter], arrayOfCircles)
   })
 
   // Main slide show loop
-  const i = setInterval(() => {
-    // console.log(counter)
+  // const i = setInterval(() => {
+  //   // console.log(counter)
 
-    // Do things in here for each image
+  //   // Do things in here for each image
 
-    mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
-    shadeCircle(arrayOfCircles[counter], arrayOfCircles)
+  //   mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
+  //   shadeCircle(arrayOfCircles[counter], arrayOfCircles)
 
-    counter++
-    if (counter === arrayOfImageUrl.length) {
-      // clearInterval(i)
-      counter = 0
-    }
-  }, duration)
+  //   counter++
+  //   if (counter === arrayOfImageUrl.length) {
+  //     // clearInterval(i)
+  //     counter = 0
+  //   }
+  // }, duration)
 }
 
 const stylizeArrowBox = (box, imageSrc) => {
@@ -106,15 +106,13 @@ const stylizeArrowBox = (box, imageSrc) => {
   box.addEventListener("mouseenter", () => {
     box.style.backgroundColor = "rgba(255, 255, 255, 0.05)"
     imageElement.style.display = "flex"
-    console.log("Displaying box")
+    // console.log("Displaying box")
   })
   box.addEventListener("mouseleave", () => {
     box.style.backgroundColor = "unset"
     imageElement.style.display = "none"
-    console.log("Hiding box")
+    // console.log("Hiding box")
   })
-
-  
 }
 
 const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
@@ -131,7 +129,7 @@ const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
   const navigationDiv = document.createElement("div")
   navigationDiv.style.height = "100%"
   navigationDiv.style.width = "100%"
-  navigationDiv.style.backgroundColor = "rgba(0, 0, 0, 0.6)"
+  navigationDiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
   navigationDiv.style.position = "absolute"
   // navigationDiv.style.top = "0px"
   // navigationDiv.style.left = "0px"
