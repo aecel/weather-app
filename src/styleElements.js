@@ -23,7 +23,7 @@ const styleDateTime = (data) => {
   const divElement = document.createElement("div")
   divElement.classList.add("in-grid")
   divElement.classList.add("no-bg")
-
+ 
   const dayText = document.createElement("p")
   dayText.textContent = day
   dayText.style.fontWeight = "bold"

@@ -14,13 +14,41 @@ import {
   styleTempData,
   styleWeatherIcon,
 } from "./styleElements.js"
+import drawMap from "./drawMap.js"
+
 // --- Main code --- //
 
 // Slide Show as a background
 const imageArray = [bg13, bg14, bg9, bg12, bg18]
 
-const mainDiv = document.querySelector("html")
+const mainDiv = document.querySelector("body")
 imageSlider(mainDiv, imageArray)
+
+const removeAllChildNodes = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild)
+  }
+}
+
+const searchIconClicked = () => {
+  const searchInputDiv = document.querySelector(".search-bar")
+  const cityQuery = searchInputDiv.value
+  if (cityQuery != "") {
+    const weatherDataBoxes = document.getElementsByClassName("weather-data")
+    
+    for(const weatherDataBox of weatherDataBoxes) {
+      removeAllChildNodes(weatherDataBox)
+    }
+
+    // const mapDiv = document.getElementById("map")
+    // removeAllChildNodes(mapDiv)
+
+    getData(cityQuery)
+  }
+}
+
+const searchIconDiv = document.querySelector(".search-icon")
+searchIconDiv.addEventListener("click", searchIconClicked)
 
 // --- Test code --- //
 
@@ -52,25 +80,37 @@ const getData = async (cityName) => {
   cityNameDiv.textContent = topLeftText
 
   const coord = weatherData.city.coord
+  const lat = coord.lat
+  const lon = coord.lon
+  const mainMap = drawMap(lat, lon)
+
   const sunrise = weatherData.city.sunrise
   const sunset = weatherData.city.sunset
   const formattedSunrise = timestamp.toDate(sunrise).toString()
   const formattedSunset = timestamp.toDate(sunset).toString()
 
   const dateToday = formattedSunrise.slice(4, 15)
+  const timeZone = formattedSunrise.slice(25, 33)
+  const timeZoneDesc = formattedSunrise.slice(33)
   const sunriseTime = formattedSunrise.slice(16, 21)
   const sunsetTime = formattedSunset.slice(16, 21)
+  const timeNow = new Date().toLocaleTimeString()
 
   const dateDiv = document.querySelector(".date-info")
-  dateDiv.textContent = dateToday
+  const dateNowDiv = document.querySelector(".date-now")
+  const timeNowDiv = document.querySelector(".time-now")
+  const timezone1Div = document.querySelector(".timezone-1")
+  const timezone2Div = document.querySelector(".timezone-2")
+  dateNowDiv.textContent = dateToday
+  timeNowDiv.textContent = timeNow
+  timezone1Div.textContent = timeZone
+  timezone2Div.textContent = timeZoneDesc
 
-  const sunriseDiv = document.querySelector(".sunrise")
-  sunriseDiv.textContent = "Sunrise Time: " + sunriseTime
-  
-  const sunsetDiv = document.querySelector(".sunset")
-  sunsetDiv.textContent = "Sunset Time: " + sunsetTime
+  const sunriseDiv = document.querySelector(".sunrise-text")
+  sunriseDiv.textContent = sunriseTime
 
-  console.log(countryName)
+  const sunsetDiv = document.querySelector(".sunset-text")
+  sunsetDiv.textContent = sunsetTime
 
   const mainData = weatherData.list
 
@@ -104,7 +144,7 @@ const getData = async (cityName) => {
   }
 }
 
-getData("Quezon City")
+getData("Zanzibar")
 
 // const handleError =
 //   (fn) =>

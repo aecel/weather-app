@@ -8,6 +8,7 @@ const newSlideCircle = () => {
   circle.style.borderRadius = "50%"
   circle.style.border = "1px white solid"
   circle.style.cursor = "pointer"
+  circle.style.zIndex = "1"
 
   return circle
 }
@@ -92,6 +93,7 @@ const stylizeArrowBox = (box, imageSrc) => {
   box.style.justifyContent = "center"
   box.style.alignItems = "center"
   box.style.cursor = "pointer"
+  box.style.zIndex = "1"
 
   // Image element style
   const imageElement = document.createElement("img")

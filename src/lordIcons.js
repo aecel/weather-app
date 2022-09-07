@@ -7,7 +7,7 @@ const searchIcon =
         trigger="hover"
         colors="primary:#ffffff"
         state="hover"
-        style="width:250px;height:250px">
+        style="width:10px;height:10px">
     </lord-icon>
     `
 
