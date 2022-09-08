@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/round-flag-icons/css/round-flag-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+      defer
+    ></script>
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <header>
+      Weather App
+      <div class="search-bar-div">
+        <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+        <lord-icon
+          class="search-icon"
+          src="https://cdn.lordicon.com/qehhcbpv.json"
+          trigger="hover"
+          colors="primary:#ffffff"
+          state="hover"
+          style="width: 20px; height: 20px"
+        >
+        </lord-icon>
+        <input
+          class="search-bar"
+          type="text"
+          id="search-input"
+          name="search-input"
+          placeholder="Search city, (country code optional)"
+        />
+      </div>
+    </header>
+    <main id="content">
+      <div class="main-box">
+        <div class="main-grid">
+          <div class="top-box city-info">
+            <div class="city-info-left">
+              <div class="city">
+                <div class="city-name"></div>
+                <div class="round-flag-icon"></div>
+              </div>
+              <div class="current-weather-container">
+                <div class="current-weather current-weather-icon"></div>
+                <div class="current-weather current-weather-main"></div>
+                <div class="current-weather current-weather-description"></div>
+
+                <div class="in-grid current-temp"></div>
+                <div class="in-grid current-feels-like"></div>
+              </div>
+            </div>
+            <div id="map"></div>
+          </div>
+          <div class="top-box date-info">
+            <div class="date-today">
+              <div>Last sync:</div>
+              <div class="time-now"></div>
+              <div class="date-now"></div>
+            </div>
+            <div class="timezone">
+              <div class="timezone-1"></div>
+              <div class="timezone-2"></div>
+            </div>
+          </div>
+          <div class="top-box sun-info no-bg">
+            <div class="in-grid sunrise">
+              <img class="icon" src="./images/sunrise.svg" alt="" />
+              <div>
+                <div class="sun-heading">Sunrise Time</div>
+                <div class="sunrise-text"></div>
+              </div>
+            </div>
+            <div class="in-grid sunset">
+              <img class="icon" src="./images/sunset.svg" alt="" />
+              <div>
+                <div class="sun-heading">Sunset Time</div>
+                <div class="sunset-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="in-grid weather-data weather-data-0"></div>
+          <div class="in-grid weather-data weather-data-1"></div>
+          <div class="in-grid weather-data weather-data-2"></div>
+          <div class="in-grid weather-data weather-data-3"></div>
+          <div class="in-grid weather-data weather-data-4"></div>
+          <div class="in-grid weather-data weather-data-5"></div>
+          <div class="in-grid weather-data weather-data-6"></div>
+          <div class="in-grid weather-data weather-data-7"></div>
+        </div>
+      </div>
+    </main>
+    <footer>Copyright © aecel 2022</footer>
+  </body>
+</html>
