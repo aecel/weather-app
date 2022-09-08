@@ -70,20 +70,20 @@ const slideShow = (
   })
 
   // Main slide show loop
-  // const i = setInterval(() => {
-  //   // console.log(counter)
+  const i = setInterval(() => {
+    // console.log(counter)
 
-  //   // Do things in here for each image
+    // Do things in here for each image
 
-  //   mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
-  //   shadeCircle(arrayOfCircles[counter], arrayOfCircles)
+    mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
+    shadeCircle(arrayOfCircles[counter], arrayOfCircles)
 
-  //   counter++
-  //   if (counter === arrayOfImageUrl.length) {
-  //     // clearInterval(i)
-  //     counter = 0
-  //   }
-  // }, duration)
+    counter++
+    if (counter === arrayOfImageUrl.length) {
+      // clearInterval(i)
+      counter = 0
+    }
+  }, duration)
 }
 
 const stylizeArrowBox = (box, imageSrc) => {

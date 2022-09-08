@@ -35,20 +35,36 @@ const searchIconClicked = () => {
   const cityQuery = searchInputDiv.value
   if (cityQuery != "") {
     const weatherDataBoxes = document.getElementsByClassName("weather-data")
-    
-    for(const weatherDataBox of weatherDataBoxes) {
+
+    for (const weatherDataBox of weatherDataBoxes) {
       removeAllChildNodes(weatherDataBox)
     }
 
+    const currentWeatherIconDiv = document.querySelector(".current-weather-icon")
+    removeAllChildNodes(currentWeatherIconDiv)
     // const mapDiv = document.getElementById("map")
     // removeAllChildNodes(mapDiv)
 
     getData(cityQuery)
   }
+  searchInputDiv.value = ""
 }
 
 const searchIconDiv = document.querySelector(".search-icon")
 searchIconDiv.addEventListener("click", searchIconClicked)
+
+const searchInputDiv = document.querySelector(".search-bar")
+
+// Execute a function when the user presses a key on the keyboard
+searchInputDiv.addEventListener("keypress", function (event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault()
+    // Trigger the button element with a click
+    searchIconClicked()
+  }
+})
 
 // --- Test code --- //
 
@@ -65,7 +81,48 @@ const getDataByCity = async (cityName) => {
   return jsonResponse
 }
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+const getCurrentWeatherByCity = async (cityName) => {
+  const queryPattern = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${myId}&limit=1&units=metric`
+  const response = await fetch(queryPattern, { mode: "cors" })
+  const jsonResponse = await response.json()
+  return jsonResponse
+}
+
 const getData = async (cityName) => {
+  // Getting Current Weather Data
+  const currentWeatherData = await getCurrentWeatherByCity(cityName)
+  console.log(currentWeatherData)
+
+  const currentMainData = currentWeatherData.main
+  const currentTemp = currentMainData.temp
+  const currentFeelsLike = currentMainData.feels_like
+  const currentWeatherObj = currentWeatherData.weather[0]
+  const currentMainWeather = currentWeatherObj.main
+  const currentDescription = currentWeatherObj.description
+  const currentIconCode = currentWeatherObj.icon
+  const currentWeatherIcon = styleWeatherIcon(currentIconCode)
+  currentWeatherIcon.style.height = "80px"
+  currentWeatherIcon.style.width = "80px"
+
+  const currentWeatherIconDiv = document.querySelector(".current-weather-icon")
+  currentWeatherIconDiv.appendChild(currentWeatherIcon)
+  const currentWeatherMainDiv = document.querySelector(".current-weather-main")
+  currentWeatherMainDiv.textContent = currentMainWeather
+  const currentWeatherDescriptionDiv = document.querySelector(
+    ".current-weather-description"
+  )
+  currentWeatherDescriptionDiv.textContent =
+    capitalizeFirstLetter(currentDescription)
+  const currentTempDiv = document.querySelector(".current-temp")
+  currentTempDiv.innerHTML = "<b>Current Temp:</b>&nbsp" + currentTemp + " °C"
+  const currentFeelsLikeDiv = document.querySelector(".current-feels-like")
+  currentFeelsLikeDiv.innerHTML = "<b>Feels like:</b>&nbsp" + currentFeelsLike + " °C"
+
+  // Getting 3-hour Forecast Data
   const weatherData = await getDataByCity(cityName)
   console.log(weatherData)
 
@@ -116,6 +173,14 @@ const getData = async (cityName) => {
 
   // Drawing the country flag icon
   const roundFlagElement = document.querySelector(".round-flag-icon")
+  const roundFlagClasses = roundFlagElement.classList
+
+  for (const class1 of roundFlagClasses) {
+    if (class1 != "round-flag-icon") {
+      roundFlagElement.classList.remove(class1)
+    }
+  }
+
   roundFlagElement.classList.add(`round-flag-${countryCodeLower}`)
 
   // Main loop for getting weather data for each timestamp
@@ -144,7 +209,7 @@ const getData = async (cityName) => {
   }
 }
 
-getData("Zanzibar")
+getData("Quezon City")
 
 // const handleError =
 //   (fn) =>

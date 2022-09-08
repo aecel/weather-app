@@ -42,8 +42,8 @@ html {
 /* Usual header */
 header {
   padding: 20px;
-  padding-left: 115px;
-  padding-right: 115px;
+  padding-left: 118px;
+  padding-right: 118px;
   background-color: #00000095;
   font-weight: bold;
   font-size: 1.5rem;
@@ -79,7 +79,7 @@ header {
   border: none;
   padding: 10px;
   padding-left: 40px;
-  
+
   position: relative;
   -webkit-appearance: none;
 }
@@ -90,7 +90,6 @@ header {
   left: 32px;
   z-index: 1;
 }
-
 
 /* Usual footer */
 footer {
@@ -174,8 +173,8 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  /* align-items: center; */
+  justify-content: center;
   gap: 10px;
 }
 
@@ -183,7 +182,7 @@ main {
   display: flex;
   gap: 20px;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   /* flex: 1; */
   margin-bottom: 15px;
 }
@@ -193,10 +192,70 @@ main {
   font-weight: bold;
 }
 
-.city-more-info {
+.current-weather-container {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.current-weather {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  font-size: 0.8rem;
+}
+
+.current-weather-icon {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.big-icon {
+  height: 80px;
+  width: 80px;
+}
+
+.current-weather-main {
+  font-weight: bold;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.current-weather-description {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+.current-temp {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 4;
+
   display: flex;
-  /* flex: 1; */
-  height: 100%;
+  align-items: center;
+  font-size: 0.8rem;
+  justify-content: flex-start;
+}
+
+.current-feels-like {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 7;
+
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  justify-content: flex-start;
 }
 
 .date-info {

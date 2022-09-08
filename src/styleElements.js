@@ -3,12 +3,15 @@ const capitalizeFirstLetter = (string) => {
 }
 
 const styleWeatherIcon = (iconCode) => {
-  const weatherIconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`
+  const weatherIconUrl = `./images/weather-icons/${iconCode}.svg`
   const weatherIcon = document.createElement("img")
   weatherIcon.src = weatherIconUrl
-  weatherIcon.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
-  weatherIcon.style.borderRadius = "50%"
-  weatherIcon.style.padding = "5px"
+  weatherIcon.style.height = "50px"
+  
+  weatherIcon.style.width = "45px"
+  // weatherIcon.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
+  // weatherIcon.style.borderRadius = "50%"
+  // weatherIcon.style.padding = "5px"
 
   return weatherIcon
 }
