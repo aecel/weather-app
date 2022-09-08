@@ -175,7 +175,7 @@ const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
     appendSliderToThisDiv,
     arrayOfImageUrl,
     arrayOfCircles,
-    5000,
+    30000,
     previousBox,
     nextBox
   )
