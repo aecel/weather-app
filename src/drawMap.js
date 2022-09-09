@@ -15,7 +15,6 @@ const drawMap = (lat, lon) => {
 
   if (marker) {
     // remove marker?
-    console.log(marker)
     marker.remove(map)
   }
 
