@@ -1,20 +1,3 @@
-// How to Use
-// imageSlider(appendSliderToThisDiv, arrayOfImageUrl)
-
-// Usual way I do it, with React:
-
-// const slideshowRef = useRef()
-// useEffect(() => {
-//   const importAll = (r) => {
-//     return r.keys().map(r)
-//   }
-
-//   const slideshowImages = importAll(
-//     require.context("../images/slideshow/", false, /\.(png|jpe?g|svg)$/)
-//   )
-//   imageSlider(slideshowRef.current, slideshowImages)
-// }, [])
-
 import previous from "./images/previous.svg"
 import next from "./images/next.svg"
 
@@ -64,7 +47,7 @@ const slideShow = (
 
   // Change counter, bg, shaded circle when the previous button is clicked
   previousBox.addEventListener("click", () => {
-    if (counter === 0) {
+    if (counter == 0) {
       counter = arrayOfImageUrl.length - 1
     } else {
       counter--
@@ -76,7 +59,7 @@ const slideShow = (
 
   // Change counter, bg, shaded circle when the next button is clicked
   nextBox.addEventListener("click", () => {
-    if (counter === arrayOfImageUrl.length - 1) {
+    if (counter == arrayOfImageUrl.length - 1) {
       counter = 0
     } else {
       counter++
@@ -87,23 +70,20 @@ const slideShow = (
   })
 
   // Main slide show loop
-  const slideShowLoop = () => {
-    const i = setInterval(() => {
-      // Do things in here for each image
+  const i = setInterval(() => {
+    // console.log(counter)
 
-      mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
-      shadeCircle(arrayOfCircles[counter], arrayOfCircles)
+    // Do things in here for each image
 
-      counter++
-      if (counter === arrayOfImageUrl.length) {
-        clearInterval(i)
-        counter = 0
-        slideShowLoop()
-      }
-    }, duration)
-  }
+    mainDiv.style.backgroundImage = `url(${arrayOfImageUrl[counter]})`
+    shadeCircle(arrayOfCircles[counter], arrayOfCircles)
 
-  slideShowLoop()
+    counter++
+    if (counter === arrayOfImageUrl.length) {
+      // clearInterval(i)
+      counter = 0
+    }
+  }, duration)
 }
 
 const stylizeArrowBox = (box, imageSrc) => {
@@ -139,20 +119,19 @@ const stylizeArrowBox = (box, imageSrc) => {
 
 const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
   // Main Div style
-  // appendSliderToThisDiv.style.height = "100%"
-  // appendSliderToThisDiv.style.width = "100%"
+  appendSliderToThisDiv.style.height = "100%"
+  appendSliderToThisDiv.style.width = "100%"
   appendSliderToThisDiv.style.backgroundSize = "cover"
   appendSliderToThisDiv.style.backgroundPosition = "center"
   appendSliderToThisDiv.style.backgroundRepeat = "no-repeat"
   appendSliderToThisDiv.style.position = "relative"
-  appendSliderToThisDiv.style.overflow = "clip"
 
   // Inside Main Div
   // Navigation Div style
   const navigationDiv = document.createElement("div")
   navigationDiv.style.height = "100%"
   navigationDiv.style.width = "100%"
-  // navigationDiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
+  navigationDiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
   navigationDiv.style.position = "absolute"
   // navigationDiv.style.top = "0px"
   // navigationDiv.style.left = "0px"
@@ -191,15 +170,51 @@ const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
   navigationDiv.appendChild(nextBox)
   appendSliderToThisDiv.appendChild(navigationDiv)
 
-  // Working slideshow (changing background of Main Div every 3 seconds)
+  // Working slideshow (changing background of Main Div every 5 seconds)
   slideShow(
     appendSliderToThisDiv,
     arrayOfImageUrl,
     arrayOfCircles,
-    3000,
+    30000,
     previousBox,
     nextBox
   )
 }
 
 export default imageSlider
+
+// const arrayOfImages = []
+// const pictureFrame = document.createElement("div")
+// for (const image of arrayOfImageUrl) {
+//   const imageElement = document.createElement("img")
+//   imageElement.style.objectFit = "contain"
+//   imageElement.classList.toggle("display-none")
+//   imageElement.style.maxHeight = "100%"
+//   imageElement.style.maxWidth = "100%"
+//   imageElement.src = image
+
+//   arrayOfImages.push(imageElement)
+
+//   pictureFrame.appendChild(imageElement)
+// }
+
+// Slideshow of Image divs
+// let counter = 1
+// arrayOfImages[0].classList.toggle("display-none")
+// const i = setInterval(() => {
+//   console.log(counter)
+
+//   // Do things in here for each image
+
+//   for (const image of arrayOfImages) {
+//     image.classList.add("display-none")
+//   }
+
+//   arrayOfImages[counter].classList.toggle("display-none")
+
+//   counter++
+//   if (counter === arrayOfImages.length) {
+//     // clearInterval(i)
+//     counter = 0
+//   }
+// }, 1000)
