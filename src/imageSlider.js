@@ -191,12 +191,12 @@ const imageSlider = (appendSliderToThisDiv, arrayOfImageUrl) => {
   navigationDiv.appendChild(nextBox)
   appendSliderToThisDiv.appendChild(navigationDiv)
 
-  // Working slideshow (changing background of Main Div every 3 seconds)
+  // Working slideshow (changing background of Main Div every 30 seconds)
   slideShow(
     appendSliderToThisDiv,
     arrayOfImageUrl,
     arrayOfCircles,
-    3000,
+    30000,
     previousBox,
     nextBox
   )

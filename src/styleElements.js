@@ -8,9 +8,9 @@ const styleWeatherIcon = (iconCode) => {
   const weatherIconUrl = `./images/weather-icons/${iconCode}.svg`
   const weatherIcon = document.createElement("img")
   weatherIcon.src = weatherIconUrl
-  weatherIcon.style.height = "50px"
+  weatherIcon.style.height = "40px"
 
-  weatherIcon.style.width = "45px"
+  weatherIcon.style.width = "auto"
   weatherIcon.style.paddingTop = "10px"
   weatherIcon.style.paddingBottom = "10px"
   // weatherIcon.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
@@ -156,8 +156,8 @@ const styleCurrentWeatherData = (currentWeatherData) => {
   const currentDescription = currentWeatherObj.description
   const currentIconCode = currentWeatherObj.icon
   const currentWeatherIcon = styleWeatherIcon(currentIconCode)
-  currentWeatherIcon.style.height = "50px"
-  currentWeatherIcon.style.width = "50px"
+  currentWeatherIcon.style.height = "40px"
+  currentWeatherIcon.style.width = "auto"
 
   const currentWeatherIconDiv = document.querySelector(".current-weather-icon")
   currentWeatherIconDiv.appendChild(currentWeatherIcon)
